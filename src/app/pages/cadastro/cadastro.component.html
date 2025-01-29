@@ -1,0 +1,51 @@
+<div class="cadastro-container">
+  <!-- Lado esquerdo (Formulário) -->
+  <div class="cadastro-form">
+    <h2>CADASTRO</h2>
+    <p>Pronto para explorar? Faça seu cadastro e aproveite!</p>
+
+    <form [formGroup]="cadastroForm" (ngSubmit)="cadastrar()">
+      <div class="input-group">
+        <label><i class="fa-solid fa-user"></i> Nome Completo</label>
+        <input formControlName="nomeCompleto" type="text" placeholder="Digite seu nome">
+      </div>
+
+      <div class="input-group">
+        <label><i class="fa-solid fa-envelope"></i> Email</label>
+        <input formControlName="email" type="email" placeholder="Digite seu email">
+      </div>
+
+      <div class="input-group">
+        <label><i class="fa-solid fa-phone"></i> Telefone</label>
+        <input formControlName="telefone" type="text" placeholder="Digite seu telefone">
+      </div>
+
+      <div class="input-group">
+        <label><i class="fa-solid fa-calendar"></i> Idade</label>
+        <input formControlName="idade" type="number" placeholder="Digite sua idade">
+      </div>
+
+      <div class="input-group">
+        <label><i class="fa-solid fa-user-lock"></i> Nome de Usuário</label>
+        <input formControlName="usuario" type="text" placeholder="Escolha um nome de usuário">
+      </div>
+
+      <div class="input-group">
+        <label><i class="fa-solid fa-lock"></i> Senha</label>
+        <input formControlName="senha" type="password" placeholder="Digite sua senha">
+      </div>
+
+      <button type="submit" [disabled]="cadastroForm.invalid" class="btn-cadastrar">Cadastrar</button>
+    </form>
+  </div>
+
+
+  <div class="cadastro-info">
+    <div class="info-box">
+      <h3>Bem-vindo(a) ao <span>PETLOVERS!</span></h3>
+      <p>Encontre seu novo <br> companheiro!</p>
+      <img src="assets/img/humanandpet.jpg" alt="humano com pet">
+    </div>
+    <p>Já tem uma conta? <a href="#">Logue-se agora</a> e ajude um pet a encontrar um lar cheio de amor!</p>
+  </div>
+</div>
