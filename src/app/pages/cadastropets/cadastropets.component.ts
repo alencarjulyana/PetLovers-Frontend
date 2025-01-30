@@ -1,41 +1,63 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { PetService } from '../../Service/pet.service';
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-cadastropets',
-  standalone: true,
-  imports: [CommonModule, FormsModule],
   templateUrl: './cadastropets.component.html',
-  styleUrls: ['./cadastropets.component.css']
+  styleUrls: ['./cadastropets.component.css'],
+  standalone: true, 
+  imports: [CommonModule, FormsModule]
 })
 export class CadastroPetsComponent {
   pet = {
-    tipo: '',
     nome: '',
-    idade: '',
+    tipo: '',
     raca: '',
     porte: '',
+    sexo: '',
     castrado: '',
-    sexo: ''
+    foto: ''
   };
 
-  imagemPreview: string | ArrayBuffer | null = null;
+  constructor(private petService: PetService) {}
 
-  onFileSelected(event: any) {
+  onFileChange(event: any) {
     const file = event.target.files[0];
+
     if (file) {
       const reader = new FileReader();
-      reader.onload = (e) => {
-        this.imagemPreview = e.target?.result ?? null;
+      reader.onload = (e: any) => {
+        this.pet.foto = e.target.result; // Converte a imagem em Base64
+        (document.getElementById('preview') as HTMLImageElement).src = e.target.result;
       };
       reader.readAsDataURL(file);
     }
   }
 
-  cadastrarPet() {
-    console.log('Pet cadastrado:', this.pet);
-    alert('Pet cadastrado com sucesso!');
-  }
+  salvarPet() {
+    try {
+      let pets = JSON.parse(localStorage.getItem("pets") || "[]");
+      pets.push(this.pet);
+      localStorage.setItem("pets", JSON.stringify(pets));
+      console.log("Pet salvo com sucesso!");
 
+      // Resetando o formulário após salvar
+      this.pet = {
+        nome: '',
+        tipo: '',
+        raca: '',
+        porte: '',
+        sexo: '',
+        castrado: '',
+        foto: ''
+      };
+
+      // Resetando a imagem de pré-visualização
+      (document.getElementById('preview') as HTMLImageElement).src = "assets/placeholder-image.png";
+    } catch (error) {
+      console.error("Erro ao salvar pet:", error);
+    }
+  }
 }

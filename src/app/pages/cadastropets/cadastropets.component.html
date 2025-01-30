@@ -1,47 +1,63 @@
-<html>
-<body>
+<div class="container">
   <nav class="navbar">
-    <div class="logo">PETLOVERS</div>
-    <ul class="nav-links">
-      <li><a routerLink="/home">Home</a></li>
-      <li><a routerLink="">Sobre</a></li>
-      <li><a routerLink="">Contato</a></li>
-      <li class="active"><a routerLink="/perfil">Meu Perfil</a></li>
+    <h1 class="logo">PETLOVERS</h1>
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Sobre</a></li>
+      <li><a href="#">Contato</a></li>
+      <li class="active"><a href="/perfil">Meu Perfil</a></li>
     </ul>
     <button class="logout">Logout</button>
   </nav>
 
-  <main>
-    <section class="form-container">
-      <h2>Meu Perfil - Cadastro Pet</h2>
-      <p>Cadastre um pet para adoção preenchendo as informações corretamente. Você escolherá os futuros tutores do seu pet.</p>
-      <form (submit)="cadastrarPet()">
-        <div class="image-upload">
-          <label for="upload">
-            <img [src]="imagemPreview || 'placeholder.png'" alt="Upload de imagem">
-          </label>
-          <input type="file" id="upload" accept="image/*" (change)="onFileSelected($event)">
-        </div>
-        <div class="form-group">
-          <input type="text" placeholder="Tipo" [(ngModel)]="pet.tipo" name="tipo">
-          <input type="text" placeholder="Nome" [(ngModel)]="pet.nome" name="nome">
-          <input type="text" placeholder="Idade" [(ngModel)]="pet.idade" name="idade">
-          <input type="text" placeholder="Raça" [(ngModel)]="pet.raca" name="raca">
-          <input type="text" placeholder="Porte" [(ngModel)]="pet.porte" name="porte">
-          <input type="text" placeholder="Castrado" [(ngModel)]="pet.castrado" name="castrado">
-          <input type="text" placeholder="Sexo" [(ngModel)]="pet.sexo" name="sexo">
-        </div>
-        <button type="submit">Cadastrar Pet</button>
-      </form>
-    </section>
-  </main>
+  <div class="cadastro-form">
+    <h2>Cadastro Pet</h2>
+    <p>Cadastre um pet para adoção preenchendo as informações corretamente. Você escolherá os futuros tutores do seu pet.</p>
+
+    <div class="image-upload">
+      <label for="file-input">
+        <img src="assets/placeholder-image.png" alt="Upload de imagem" id="preview">
+      </label>
+      <input id="file-input" type="file" accept="image/*" (change)="onFileChange($event)">
+    </div>
+
+    <input type="text" placeholder="Nome" [(ngModel)]="pet.nome">
+
+    <select [(ngModel)]="pet.tipo">
+      <option value="">Selecione o Tipo</option>
+      <option value="Cachorro">Cachorro</option>
+      <option value="Gato">Gato</option>
+      <option value="Outro">Outro</option>
+    </select>
+
+    <input type="text" placeholder="Raça" [(ngModel)]="pet.raca">
+    <input type="text" placeholder="Porte" [(ngModel)]="pet.porte">
+
+    <select [(ngModel)]="pet.sexo">
+      <option value="">Selecione o Sexo</option>
+      <option value="Macho">Macho</option>
+      <option value="Fêmea">Fêmea</option>
+    </select>
+
+    <select [(ngModel)]="pet.castrado">
+      <option value="">Castrado?</option>
+      <option value="Sim">Sim</option>
+      <option value="Não">Não</option>
+    </select>
+
+    <button (click)="salvarPet()">Cadastrar Pet</button>
+  </div>
+
+  <div class="banner">
+    <p>
+      <strong>Encontre o seu melhor amigo!</strong><br>
+      Adoção responsável, amor incondicional.<br>
+      Encontre o pet ideal para você.
+    </p>
+    <img src="./assets/img/happydog.png" alt="Cachorro feliz">
+  </div>
 
   <footer>
-    <div class="footer-content">
-      <p><strong>Encontre o seu melhor amigo!</strong></p>
-      <p>Adoção responsável, amor incondicional. Encontre o pet ideal para você.</p>
-    </div>
-    <p>&copy; 2024 PetLovers. Todos os direitos reservados.</p>
+    <p>© 2024 PetLovers. Todos os direitos reservados.</p>
   </footer>
-</body>
-</html>
+</div>
