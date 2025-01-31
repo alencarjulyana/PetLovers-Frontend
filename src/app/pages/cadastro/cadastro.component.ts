@@ -1,7 +1,10 @@
+// src/app/pages/cadastro/cadastro.component.ts
+
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import {UsuarioService} from "../../Service/usuario.service";
+import { UsuarioService } from '../../services/usuario.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cadastro',
@@ -13,29 +16,30 @@ import {UsuarioService} from "../../Service/usuario.service";
 export class CadastroComponent {
   cadastroForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private usuarioService: UsuarioService) {
+  constructor(private fb: FormBuilder, private usuarioService: UsuarioService,  private router: Router ) {
     this.cadastroForm = this.fb.group({
-      name: ['', [Validators.required, Validators.minLength(3)]],
+      name: ['', [Validators.required, Validators.minLength(1)]],
       email: ['', [Validators.required, Validators.email]],
-      phone: ['', [Validators.required, Validators.pattern(/^\d{10,11}$/)]],
-      birthday: ['', [Validators.required, Validators.minLength(8)]],
-      username: ['', [Validators.required, Validators.minLength(4)]],
-      password: ['', [Validators.required, Validators.minLength(6)]]
+      phone: ['', [Validators.required, Validators.minLength(1)]],
+      address: ['', [Validators.required, Validators.minLength(1)]], 
+      username: ['', [Validators.required, Validators.minLength(1)]],
+      password: ['', [Validators.required, Validators.minLength(1)]]
     });
   }
 
   cadastrar() {
     if (this.cadastroForm.valid) {
       this.usuarioService.cadastrarUsuario(this.cadastroForm.value).subscribe({
-        next: (res: object) => {
-          console.log('Usuário cadastrado com sucesso!', res);
+        next: (res: any) => {
+          console.log(res.message || 'Usuário cadastrado com sucesso!');
         },
-        error: (err: object) => {
-          console.error('Erro ao cadastrar usuário', err);
+        error: (err: any) => {
+          console.error('Erro ao cadastrar usuário', err.message || err);
         }
       });
     } else {
       console.log('Formulário inválido! Verifique os campos.');
     }
   }
+  
 }

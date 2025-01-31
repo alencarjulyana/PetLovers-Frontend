@@ -99,6 +99,7 @@
   width: 100%;
   margin-top: 10px;
   border-radius: 10px;
+  height: auto;
 }
 
 .cadastro-info p {
@@ -121,3 +122,4 @@
     border-radius: 0 0 20px 20px;
   }
 }
+

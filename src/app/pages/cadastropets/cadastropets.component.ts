@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { PetService } from '../../Service/pet.service';
+import { PetService } from '../../services/pet.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 

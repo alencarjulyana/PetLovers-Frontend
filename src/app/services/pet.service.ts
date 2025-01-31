@@ -16,4 +16,13 @@ export class PetService {
     return this.http.post<any>(this.apiUrl, pet);
 
   }
+
+   getPets(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/pets`);
+  }
+
+  addPet(petData: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/pets`, petData);
+  }
 }
+

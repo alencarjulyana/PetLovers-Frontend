@@ -6,11 +6,15 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class UsuarioService {
-  private apiUrl = 'http://localhost:8080/usuarios';
+  private apiUrl = 'http://localhost:8080/users';
 
   constructor(private http: HttpClient) {}
 
   cadastrarUsuario(usuario: any): Observable<any> {
-    return this.http.post<any>(this.apiUrl, usuario);
+    return this.http.post<any>(`${this.apiUrl}/register`, usuario);
   }
+
+  // loginUsuario(userData: any): Observable<any> {
+  //   return this.http.post(`${this.apiUrl}/login`, userData);
+  // }
 }
