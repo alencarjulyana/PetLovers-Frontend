@@ -1,20 +1,19 @@
 import { Injectable } from '@angular/core';
+import {HttpClient} from "@angular/common/http";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root',
 })
 export class PetService {
-  private storageKey = 'pets';
 
-  getPets(): any[] {
-    return JSON.parse(localStorage.getItem(this.storageKey) || '[]');
+  private apiUrl = 'http://localhost:8080/pets';
+
+  constructor(private http: HttpClient) {
   }
 
-  addPet(pet: any): void {
-    const pets = this.getPets();
-    pets.push(pet);
-    localStorage.setItem(this.storageKey, JSON.stringify(pets));
-  }
+  cadastrarPet(pet: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl, pet);
 
-  
+  }
 }

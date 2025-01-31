@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import {UsuarioService} from "../../Service/usuario.service";
 
 @Component({
   selector: 'app-cadastro',
@@ -12,20 +13,27 @@ import { CommonModule } from '@angular/common';
 export class CadastroComponent {
   cadastroForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private usuarioService: UsuarioService) {
     this.cadastroForm = this.fb.group({
-      nomeCompleto: ['', [Validators.required, Validators.minLength(3)]],
+      name: ['', [Validators.required, Validators.minLength(3)]],
       email: ['', [Validators.required, Validators.email]],
-      telefone: ['', [Validators.required, Validators.pattern(/^\d{10,11}$/)]],
-      idade: ['', [Validators.required, Validators.min(18)]],
-      usuario: ['', [Validators.required, Validators.minLength(4)]],
-      senha: ['', [Validators.required, Validators.minLength(6)]]
+      phone: ['', [Validators.required, Validators.pattern(/^\d{10,11}$/)]],
+      birthday: ['', [Validators.required, Validators.minLength(8)]],
+      username: ['', [Validators.required, Validators.minLength(4)]],
+      password: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
 
   cadastrar() {
     if (this.cadastroForm.valid) {
-      console.log('Cadastro realizado com sucesso!', this.cadastroForm.value);
+      this.usuarioService.cadastrarUsuario(this.cadastroForm.value).subscribe({
+        next: (res: object) => {
+          console.log('Usuário cadastrado com sucesso!', res);
+        },
+        error: (err: object) => {
+          console.error('Erro ao cadastrar usuário', err);
+        }
+      });
     } else {
       console.log('Formulário inválido! Verifique os campos.');
     }
