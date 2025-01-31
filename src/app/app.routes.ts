@@ -8,7 +8,7 @@ export const routes: Routes = [
   { path: 'cadastro', component: CadastroComponent },
   // { path: 'login', component: LoginComponent },
   { path: 'dashboard', component: DashboardComponent },
-  { path: 'cadastropets', component: CadastroPetsComponent },
+  { path: 'perfil', component: CadastroPetsComponent },
   { path: '', redirectTo: '/cadastro', pathMatch: 'full' },
   { path: '**', redirectTo: '/cadastro' }
 ];

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { PetService } from '../../services/pet.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -20,8 +21,7 @@ export class CadastroPetsComponent {
     castrado: '',
     foto: ''
   };
-
-  constructor(private petService: PetService) {}
+  constructor(private petService: PetService, private router: Router) {}
 
   onFileChange(event: any) {
     const file = event.target.files[0];
@@ -42,6 +42,7 @@ export class CadastroPetsComponent {
       pets.push(this.pet);
       localStorage.setItem("pets", JSON.stringify(pets));
       console.log("Pet salvo com sucesso!");
+      this.router.navigate(['/dashboard']); 
 
       // Resetando o formulário após salvar
       this.pet = {
