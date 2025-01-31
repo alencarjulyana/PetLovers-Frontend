@@ -1,1 +1,52 @@
-<p>dashboard works!</p>
+<div class="dashboard-container">
+  <nav class="navbar">
+    <h1 class="logo">PETLOVERS</h1>
+    <ul>
+      <li><a routerLink="/">Home</a></li>
+      <li><a routerLink="/sobre">Sobre</a></li>
+      <li><a routerLink="/contato">Contato</a></li>
+      <li class="active"><a routerLink="/perfil">Meu Perfil</a></li>
+    </ul>
+    <button class="logout">Logout</button>
+  </nav>
+
+  <div class="banner">
+    <p>
+      <strong>Encontre o seu melhor amigo!</strong><br>
+      Adoção responsável, amor incondicional.<br>
+      Encontre o pet ideal para você.
+    </p>
+    <img src="./assets/img/dog.png" alt="Cachorro">
+  </div>
+
+  <div class="filters">
+    <h3>Filtro</h3>
+    <button (click)="filterPets('Cachorro')">Cachorro</button>
+    <button (click)="filterPets('Gato')">Gato</button>
+
+    <h3>Sexo</h3>
+    <button (click)="filterPets('Macho')">Macho</button>
+    <button (click)="filterPets('Fêmea')">Fêmea</button>
+
+    <h3>Tamanho</h3>
+    <button (click)="filterPets('Pequeno')">Pequeno</button>
+    <button (click)="filterPets('Médio')">Médio</button>
+    <button (click)="filterPets('Grande')">Grande</button>
+  </div>
+
+  <div class="pet-list">
+    <div *ngFor="let pet of filteredPets" class="pet-card">
+      <img [src]="pet.foto" alt="{{ pet.nome }}">
+      <h3>{{ pet.nome }}</h3>
+      <p><strong>Tipo:</strong> {{ pet.tipo }}</p>
+      <p><strong>Raça:</strong> {{ pet.raca }}</p>
+      <p><strong>Porte:</strong> {{ pet.porte }}</p>
+      <p><strong>Sexo:</strong> {{ pet.sexo }}</p>
+      <p><strong>Castrado:</strong> {{ pet.castrado }}</p>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2024 PetLovers. Todos os direitos reservados.</p>
+  </footer>
+</div>
