@@ -11,10 +11,10 @@ export class UsuarioService {
   constructor(private http: HttpClient) {}
 
   cadastrarUsuario(usuario: any): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/register`, usuario);
+    return this.http.post<any>(this.apiUrl, usuario);
   }
 
-  // loginUsuario(userData: any): Observable<any> {
-  //   return this.http.post(`${this.apiUrl}/login`, userData);
-  // }
+  autenticarUsuario(username: string, password: string): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/login`, { username, password });
+  }
 }

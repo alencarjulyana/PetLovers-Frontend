@@ -1,45 +1,51 @@
-// // src/app/pages/login/login.component.ts
+import { CommonModule } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+import { UsuarioService } from '../../Service/usuario.service';
 
-// import { Component } from '@angular/core';
-// import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-// import { CommonModule } from '@angular/common';
-// import { UsuarioService } from '../../services/usuario.service';
-// import { Router } from '@angular/router'; // Importar Router
+@Component({
+  standalone: true,
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css'],
+  imports: [ReactiveFormsModule, CommonModule],
+})
+export class LoginComponent implements OnInit {
+  loginForm!: FormGroup;
+  erroMensagem: string = '';
 
-// @Component({
-//   selector: 'app-login',
-//   standalone: true,
-//   templateUrl: './login.component.html',
-//   styleUrls: ['./login.component.css'],
-//   imports: [CommonModule, ReactiveFormsModule]
-// })
-// export class LoginComponent {
-//   loginForm: FormGroup;
 
-//   constructor(
-//     private fb: FormBuilder,
-//     private usuarioService: UsuarioService,
-//     private router: Router
-//   ) {
-//     this.loginForm = this.fb.group({
-//       email: ['', [Validators.required, Validators.email]],
-//       password: ['', [Validators.required, Validators.minLength(6)]]
-//     });
-//   }
+  constructor(
+    private fb: FormBuilder,
+    private usuarioService: UsuarioService,
+    private router: Router
 
-//   login() {
-//     if (this.loginForm.valid) {
-//       this.usuarioService.loginUsuario(this.loginForm.value).subscribe({
-//         next: (res: any) => {
-//           console.log('Login bem-sucedido!', res);
-//           this.router.navigate(['/dashboard']); 
-//         },
-//         error: (err: any) => {
-//           console.error('Erro ao fazer login', err);
-//         }
-//       });
-//     } else {
-//       console.log('Formulário de login inválido! Verifique os campos.');
-//     }
-//   }
-// }
+  ) {}
+
+  ngOnInit(): void {
+    this.loginForm = this.fb.group({
+      username: ['', Validators.required],
+      password: ['', Validators.required]
+    });
+  }
+
+  onSubmit() {
+    if (this.loginForm.invalid) return;
+
+    const { username, password } = this.loginForm.value;
+
+    this.usuarioService.autenticarUsuario(username, password).subscribe(
+      (response) => {
+        if (response) {
+          localStorage.setItem('usuario', JSON.stringify(response));
+          this.router.navigate(['/dashboard']);
+        }
+      },
+      (error) => {
+        console.error('Erro ao autenticar usuário:', error);
+        this.erroMensagem = 'Usuário ou senha incorretos!';
+      }
+    );
+  }
+}
