@@ -3,14 +3,14 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UsuarioService } from '../../services/usuario.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   standalone: true,
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  imports: [ReactiveFormsModule, CommonModule],
-  providers: [UsuarioService] 
+  imports: [ReactiveFormsModule, CommonModule]
 })
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
@@ -19,7 +19,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private usuarioService: UsuarioService,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -29,22 +30,27 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  onSubmit() {
-    if (this.loginForm.invalid) return;
-
-    const { email, password } = this.loginForm.value; 
-
-    this.usuarioService.loginUsuario({ email, password }).subscribe({
-      next: (response) => {
-        if (response) {
-          sessionStorage.setItem('usuarioLogado', JSON.stringify(response)); 
-          this.router.navigate(['/dashboard']);
-        }
-      },
-      error: (error) => {
-        console.error('Erro ao autenticar usuário:', error);
-        this.erroMensagem = 'Usuário ou senha incorretos!';
+  onSubmit(): void {
+    if (this.loginForm.invalid) {
+      this.erroMensagem = "Preencha todos os campos corretamente.";
+      return;
+    }
+  
+    this.usuarioService.loginUsuario({
+      email: this.loginForm.get('email')?.value,
+      password: this.loginForm.get('password')?.value
+    }).subscribe(response => {
+      if (response && response.id) {
+        console.log("✅ Login bem-sucedido! Salvando usuário e redirecionando...");
+        this.authService.saveUserData(response); // 🔹 Salva os dados do usuário no sessionStorage
+        this.router.navigate(['/dashboard']); // Redireciona após login
+      } else {
+        this.erroMensagem = "❌ Credenciais inválidas!";
       }
+    }, error => {
+      this.erroMensagem = "❌ Erro ao fazer login. Tente novamente.";
+      console.error("❌ Erro ao fazer login:", error);
     });
   }
+  
 }

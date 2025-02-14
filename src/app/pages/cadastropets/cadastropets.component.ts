@@ -1,64 +1,63 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 import { PetService } from '../../services/pet.service';
+import { AuthService } from '../../services/auth.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cadastropets',
+  standalone: true,
+  imports: [CommonModule, FormsModule],
   templateUrl: './cadastropets.component.html',
-  styleUrls: ['./cadastropets.component.css'],
-  standalone: true, 
-  imports: [CommonModule, FormsModule]
+  styleUrls: ['./cadastropets.component.css']
 })
 export class CadastroPetsComponent {
-  pet = {
-    nome: '',
-    tipo: '',
-    raca: '',
-    porte: '',
-    sexo: '',
-    castrado: '',
-    foto: ''
+  petData = {
+    name: '',
+    photo: '',
+    type: '',
+    breed: '',
+    size: '',
+    sex: '',
+    neutered: false
   };
-  constructor(private petService: PetService, private router: Router) {}
 
-  onFileChange(event: any) {
+  previewUrl: string | ArrayBuffer | null = null; // Para pré-visualizar a imagem
+  constructor(private petService: PetService, private authService: AuthService, private router: Router) {}
+
+  // 🔹 Função para manipular o upload de imagem
+  onFileChange(event: any): void {
     const file = event.target.files[0];
-
     if (file) {
       const reader = new FileReader();
-      reader.onload = (e: any) => {
-        this.pet.foto = e.target.result; // Converte a imagem em Base64
-        (document.getElementById('preview') as HTMLImageElement).src = e.target.result;
+      reader.onload = () => {
+        this.previewUrl = reader.result;
+        this.petData.photo = reader.result as string; // Converte a imagem para Base64
       };
       reader.readAsDataURL(file);
     }
   }
 
-  salvarPet() {
-    try {
-      let pets = JSON.parse(localStorage.getItem("pets") || "[]");
-      pets.push(this.pet);
-      localStorage.setItem("pets", JSON.stringify(pets));
-      console.log("Pet salvo com sucesso!");
-      this.router.navigate(['/dashboard']); 
-
-      // Resetando o formulário após salvar
-      this.pet = {
-        nome: '',
-        tipo: '',
-        raca: '',
-        porte: '',
-        sexo: '',
-        castrado: '',
-        foto: ''
-      };
-
-      // Resetando a imagem de pré-visualização
-      (document.getElementById('preview') as HTMLImageElement).src = "assets/placeholder-image.png";
-    } catch (error) {
-      console.error("Erro ao salvar pet:", error);
+  // 🔹 Função para cadastrar um pet
+  cadastrarPet(): void {
+    const userId = this.authService.getUserId();
+    if (!userId) {
+      console.error("Usuário não está logado!");
+      return;
     }
+
+    this.petService.createPet(userId, this.petData).subscribe(response => {
+      console.log('✅ Pet cadastrado com sucesso!', response);
+      this.router.navigate(['/dashboard']);
+    }, error => {
+      console.error("❌ Erro ao cadastrar pet:", error);
+    });
+  }
+
+  // 🔹 Função para fazer logout
+  logout(): void {
+    this.authService.logout();
+    window.location.href = '/login';
   }
 }

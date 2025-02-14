@@ -21,29 +21,32 @@
 
   <div class="filters">
     <h3>Filtro</h3>
-    <button (click)="filterPets('Cachorro')">Cachorro</button>
-    <button (click)="filterPets('Gato')">Gato</button>
-
+    <button (click)="filterPets('Dog')">Cães</button>
+    <button (click)="filterPets('Cat')">Gatos</button>
     <h3>Sexo</h3>
-    <button (click)="filterPets('Macho')">Macho</button>
-    <button (click)="filterPets('Fêmea')">Fêmea</button>
-
+    <button (click)="filterPets('Macho')">Machos</button>
+    <button (click)="filterPets('Fêmea')">Fêmeas</button>
     <h3>Tamanho</h3>
-    <button (click)="filterPets('Pequeno')">Pequeno</button>
-    <button (click)="filterPets('Médio')">Médio</button>
-    <button (click)="filterPets('Grande')">Grande</button>
+    <button (click)="filterPets('Large')">Grandes</button>
+    <button (click)="filterPets('Medium')">Grandes</button>
+    <button (click)="filterPets('Small')">Grandes</button>
+    <h3>Limpar Filtro</h3>
+    <button (click)="resetFilters()">Mostrar Todos</button>
   </div>
 
-  <div class="pet-list">
-    <div *ngFor="let pet of filteredPets" class="pet-card">
-      <img [src]="pet.foto" alt="{{ pet.nome }}">
-      <h3>{{ pet.nome }}</h3>
-      <p><strong>Tipo:</strong> {{ pet.tipo }}</p>
-      <p><strong>Raça:</strong> {{ pet.raca }}</p>
-      <p><strong>Porte:</strong> {{ pet.porte }}</p>
-      <p><strong>Sexo:</strong> {{ pet.sexo }}</p>
-      <p><strong>Castrado:</strong> {{ pet.castrado }}</p>
-    </div>
+  
+  <div *ngIf="filteredPets.length === 0">
+    <p>Nenhum pet encontrado.</p>
+  </div>
+
+  <div *ngFor="let pet of filteredPets" class="pet-card">
+    <img [src]="pet.photo" alt="Foto do pet">
+    <h3>{{ pet.name }}</h3>
+    <p>Raça: {{ pet.breed }}</p>
+    <p>Tamanho: {{ pet.size }}</p>
+    <p>Sexo: {{ pet.sex }}</p>
+
+    <button (click)="deletePet(pet.id)">Excluir</button>
   </div>
 
   <footer>

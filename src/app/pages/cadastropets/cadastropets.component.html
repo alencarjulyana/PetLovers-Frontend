@@ -2,12 +2,12 @@
   <nav class="navbar">
     <h1 class="logo">PETLOVERS</h1>
     <ul>
-      <li><a href="/dashboard">Home</a></li>
+      <li><a routerLink="/dashboard">Home</a></li>
       <li><a href="#">Sobre</a></li>
       <li><a href="#">Contato</a></li>
-      <li class="active"><a href="/perfil">Meu Perfil</a></li>
+      <li class="active"><a routerLink="/perfil">Meu Perfil</a></li>
     </ul>
-    <button class="logout">Logout</button>
+    <button class="logout" (click)="logout()">Logout</button>
   </nav>
 
   <div class="cadastro-form">
@@ -16,36 +16,35 @@
 
     <div class="image-upload">
       <label for="file-input">
-        <img src="assets/placeholder-image.png" alt="Upload de imagem" id="preview">
+        <img [src]="previewUrl || 'assets/placeholder-image.png'" alt="Upload de imagem" id="preview">
       </label>
       <input id="file-input" type="file" accept="image/*" (change)="onFileChange($event)">
     </div>
 
-    <input type="text" placeholder="Nome" [(ngModel)]="pet.nome">
+    <input type="text" placeholder="Nome" [(ngModel)]="petData.name">
 
-    <select [(ngModel)]="pet.tipo">
+    <select [(ngModel)]="petData.type">
       <option value="">Selecione o Tipo</option>
-      <option value="Cachorro">Cachorro</option>
-      <option value="Gato">Gato</option>
-      <option value="Outro">Outro</option>
+      <option value="Dog">Cachorro</option>
+      <option value="Cat">Gato</option>
+      <option value="Other">Outro</option>
     </select>
 
-    <input type="text" placeholder="Raça" [(ngModel)]="pet.raca">
-    <input type="text" placeholder="Porte" [(ngModel)]="pet.porte">
+    <input type="text" placeholder="Raça" [(ngModel)]="petData.breed">
+    <input type="text" placeholder="Porte" [(ngModel)]="petData.size">
 
-    <select [(ngModel)]="pet.sexo">
+    <select [(ngModel)]="petData.sex">
       <option value="">Selecione o Sexo</option>
-      <option value="Macho">Macho</option>
-      <option value="Fêmea">Fêmea</option>
+      <option value="Male">Macho</option>
+      <option value="Female">Fêmea</option>
     </select>
 
-    <select [(ngModel)]="pet.castrado">
-      <option value="">Castrado?</option>
-      <option value="Sim">Sim</option>
-      <option value="Não">Não</option>
+    <select [(ngModel)]="petData.neutered">
+      <option [ngValue]="true">Castrado</option>
+      <option [ngValue]="false">Não Castrado</option>
     </select>
 
-    <button (click)="salvarPet()">Cadastrar Pet</button>
+    <button (click)="cadastrarPet()">Cadastrar Pet</button>
   </div>
 
   <div class="banner">

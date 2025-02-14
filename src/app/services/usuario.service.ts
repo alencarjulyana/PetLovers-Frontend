@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -7,32 +7,36 @@ import { Observable } from 'rxjs';
 })
 export class UsuarioService {
   private apiUrl = 'http://localhost:8080/users';
+  private storageKey = 'userData'; 
 
   constructor(private http: HttpClient) {}
-
-  // 🔹 Cadastro de usuário
+  
   cadastrarUsuario(usuario: any): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/register`, usuario);
   }
 
-  // 🔹 Login do usuário
   loginUsuario(userData: any): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/login`, userData);
+    return new Observable(observer => {
+      this.http.post<any>(`${this.apiUrl}/login`, userData).subscribe(response => {
+        if (response && response.id) {
+          console.log("✅ Login bem-sucedido! Salvando usuário na sessão...");
+          sessionStorage.setItem(this.storageKey, JSON.stringify(response)); // 🔹 Agora usa 'userData'
+          observer.next(response);
+        } else {
+          observer.error("❌ Erro no login: Resposta inválida");
+        }
+      }, error => {
+        observer.error(error);
+      });
+    });
   }
 
-  // 🔹 Armazena o usuário logado no sessionStorage
-  salvarUsuarioNoSessionStorage(usuario: any): void {
-    sessionStorage.setItem('usuarioLogado', JSON.stringify(usuario));
-  }
-
-  // 🔹 Obtém o usuário logado do sessionStorage
   obterUsuarioDoSessionStorage(): any {
-    const usuario = sessionStorage.getItem('usuarioLogado');
+    const usuario = sessionStorage.getItem(this.storageKey);
     return usuario ? JSON.parse(usuario) : null;
   }
 
-  // 🔹 Remove o usuário do sessionStorage (logout)
   removerUsuarioDoSessionStorage(): void {
-    sessionStorage.removeItem('usuarioLogado');
+    sessionStorage.removeItem(this.storageKey);
   }
 }
