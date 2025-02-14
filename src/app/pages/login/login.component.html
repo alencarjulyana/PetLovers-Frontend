@@ -6,9 +6,9 @@
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       <div class="input-group">
         <label><i class="fa-solid fa-user-lock"></i> Login</label>
-        <input formControlName="username" type="text" placeholder="Nome de usuário">
-        <div class="error" *ngIf="loginForm.controls['username'].invalid && loginForm.controls['username'].touched">
-          O nome de usuário é obrigatório!
+        <input formControlName="email" type="text" placeholder="E-mail">
+        <div class="error" *ngIf="loginForm.controls['email'].invalid && loginForm.controls['email'].touched">
+          O e-mail é obrigatório!
         </div>
       </div>
 

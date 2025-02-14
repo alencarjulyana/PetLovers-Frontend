@@ -13,7 +13,7 @@ bootstrapApplication(AppComponent, {
     provideAnimations(),
   ]
 
-});
+}).catch(err => console.error(err));
 
 
 

@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
   standalone: true,
   templateUrl: './cadastro.component.html',
   styleUrls: ['./cadastro.component.css'],
-  imports: [CommonModule, ReactiveFormsModule]
+  imports: [CommonModule, ReactiveFormsModule] 
 })
 export class CadastroComponent {
   cadastroForm: FormGroup;
