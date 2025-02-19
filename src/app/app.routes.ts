@@ -3,14 +3,14 @@ import { CadastroComponent } from './pages/cadastro/cadastro.component';
 import { CadastroPetsComponent } from './pages/cadastropets/cadastropets.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { LoginComponent } from './pages/login/login.component';
+import { SobreComponent } from './pages/sobre/sobre.component';
 
 export const routes: Routes = [
   { path: 'cadastro', component: CadastroComponent },
   { path: 'perfil', component: CadastroPetsComponent },
   { path: 'dashboard', component: DashboardComponent },
-  { path: 'dashboard', redirectTo: '/dashboard' },
-  { path: 'login', component: LoginComponent},
-  { path: 'login', redirectTo: '/login' },
+  { path: 'login', component: LoginComponent },
+  { path: 'sobre', component: SobreComponent },
   { path: '**', redirectTo: '/cadastro' }
 ];
 

@@ -20,7 +20,7 @@ export class PetService {
   }
 
   deletePet(petId: string): Observable<any> {
-    return this.http.delete(`http://localhost:8080/pets/${petId}`);
+    return this.http.delete(`http://localhost:8080/pets/${petId}`, { responseType: 'text' });
   }
 
   // 🔹 Listar pets do usuário

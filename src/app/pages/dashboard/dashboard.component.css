@@ -10,8 +10,9 @@
   justify-content: space-between;
   align-items: center;
   background-color: #cbc8c8;
-  padding: 15px 30px; /* Increased padding for better spacing */
-  color: #6142A8;
+  padding: 15px 30px;
+  color: #652681;
+  border-radius: 10px;
 }
 
 .navbar .logo {
@@ -37,11 +38,11 @@
 }
 
 .navbar ul li.active a {
-  color: #6142A8;
+  color: #652681;
 }
 
 .logout {
-  background-color: #6142A8;
+  background-color: #652681;
   border: none;
   padding: 12px 24px;
   cursor: pointer;
@@ -49,25 +50,38 @@
   font-size: 16px;
   border-radius: 4px;
 }
-
 .banner {
-  display: flex;
+  display: flex;               
+  align-items: center;         
   justify-content: space-between;
-  align-items: center;
-  background-color: #ccc;
-  color: black;
-  padding: 25px;
-  margin-top: 30px;
-  border-radius: 8px;
+  background-color: #5C2D91;  
+  padding: 2rem;
+  color: #fff;
+  border-radius: 10px;
+  padding-left: 0%;
+  padding-bottom: 0%;
+  margin-top: 5px;
 }
 
-.banner p {
-  font-size: 18px;
+.banner-content {
+  max-width: 50%;
+}
+
+.banner-content h1 {
+  font-size: 2.4rem;
+  margin-bottom: 0.5rem;
+}
+
+.banner-content p {
+  font-size: 1.2rem;
+  line-height: 1.5;
 }
 
 .banner img {
-  width: 200px;
+  max-width: 300px;
   height: auto;
+  margin-left: 2rem;
+  margin-left: 0%;
 }
 
 .filters {
@@ -110,7 +124,7 @@
 
 footer {
   text-align: center;
-  margin-top: 30px; /* Increased margin for better separation */
+  margin-top: 30px; 
   padding: 20px;
   background-color: #f9f9f9;
   color: black;

@@ -3,12 +3,12 @@ import { PetService } from '../../services/pet.service';
 import { AuthService } from '../../services/auth.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, RouterLink, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-cadastropets',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterModule, RouterLink],
   templateUrl: './cadastropets.component.html',
   styleUrls: ['./cadastropets.component.css']
 })
