@@ -4,6 +4,7 @@ import { CadastroPetsComponent } from './pages/cadastropets/cadastropets.compone
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { LoginComponent } from './pages/login/login.component';
 import { SobreComponent } from './pages/sobre/sobre.component';
+import { MeusFavoritosComponent } from './meus-favoritos/meus-favoritos.component';
 
 export const routes: Routes = [
   { path: 'cadastro', component: CadastroComponent },
@@ -11,6 +12,7 @@ export const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
   { path: 'login', component: LoginComponent },
   { path: 'sobre', component: SobreComponent },
+  { path: 'favoritos', component: MeusFavoritosComponent },
   { path: '**', redirectTo: '/cadastro' }
 ];
 

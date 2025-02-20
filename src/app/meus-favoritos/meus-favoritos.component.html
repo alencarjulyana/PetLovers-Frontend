@@ -1,0 +1,25 @@
+<app-header></app-header>
+
+<div class="favorites-container">
+    <h2>Meus Pets Favoritos</h2>
+  
+    <div *ngIf="favoritePets.length === 0" class="no-favorites">
+      <p>Você não tem nenhum pet favorito ainda. 🐶😿</p>
+    </div>
+  
+    <div class="pets-grid">
+      <div *ngFor="let pet of favoritePets" class="pet-card">
+        <img [src]="pet.photo" alt="Foto do pet" class="pet-photo">
+        <h3>{{ pet.name }}</h3>
+        <p><strong>Raça:</strong> {{ pet.breed }}</p>
+        <p><strong>Tamanho:</strong> {{ pet.size }}</p>
+        <p><strong>Sexo:</strong> {{ pet.sex }}</p>
+  
+        <button class="remove-btn" (click)="unfavoritePet(pet.id)">
+          💔 Remover dos Favoritos
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  

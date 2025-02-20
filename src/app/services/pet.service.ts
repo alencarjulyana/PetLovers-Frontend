@@ -6,11 +6,10 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class PetService {
-  private apiUrl = 'http://localhost:8080/users'; // Base URL do backend
+  private apiUrl = 'http://localhost:8080/users';
 
   constructor(private http: HttpClient) {}
 
-  // 🔹 Criar um novo pet (User Service chama o Pet Service via gRPC)
   createPet(ownerId: string, petData: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/${ownerId}/pets`, petData);
   }
@@ -19,8 +18,16 @@ export class PetService {
     return this.http.get<any[]>(`http://localhost:8080/pets`);
   }
 
+  updatePet(petId: string, petData: any): Observable<any> {
+    return this.http.put(`http://localhost:8080/pets/${petId}`, petData);
+  }
+
   deletePet(petId: string): Observable<any> {
     return this.http.delete(`http://localhost:8080/pets/${petId}`, { responseType: 'text' });
+  }
+
+  favoritePet(userId: string, petId: string): Observable<any> {
+    return this.http.post(`http://localhost:8080/pets/${userId}/favorites`, { petId });
   }
 
   // 🔹 Listar pets do usuário
@@ -28,13 +35,22 @@ export class PetService {
     return this.http.get<any[]>(`${this.apiUrl}/${userId}/pets`);
   }
 
-  // 🔹 Listar favoritos do usuário
-  getFavoritePets(userId: string): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/${userId}/favorites/details`);
+  unfavoritePet(userId: string, petId: string): Observable<any> {
+    return this.http.delete(`http://localhost:8080/pets/${userId}/favorites/${petId}`);
   }
-
-  // 🔹 Adicionar um pet aos favoritos
-  addFavoritePet(userId: string, petId: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}/${userId}/favorites`, { userId, petId });
+  
+  getFavoritePetsDetails(userId: string): Observable<any> {
+    return this.http.get(`http://localhost:8080/pets/${userId}/favorites/details`);
   }
 }
+
+
+// // 🔹 Listar favoritos do usuário
+  // getFavoritePets(userId: string): Observable<any[]> {
+  //   return this.http.get<any[]>(`${this.apiUrl}/${userId}/favorites/details`);
+  // }
+
+  // // 🔹 Adicionar um pet aos favoritos
+  // addFavoritePet(userId: string, petId: string): Observable<any> {
+  //   return this.http.post(`${this.apiUrl}/${userId}/favorites`, { userId, petId });
+  // }

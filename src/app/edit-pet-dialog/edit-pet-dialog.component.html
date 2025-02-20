@@ -1,0 +1,40 @@
+<h2 mat-dialog-title>Editar Pet</h2>
+<mat-dialog-content>
+    <div class="photo-container">
+        <img [src]="editForm.get('photo')?.value" alt="Foto do Pet" class="pet-photo">
+        <input type="file" accept="image/*" (change)="onFileChange($event)">
+      </div>
+  <form [formGroup]="editForm">
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Nome</mat-label>
+      <input matInput formControlName="name">
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Raça</mat-label>
+      <input matInput formControlName="breed">
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Tipo</mat-label>
+      <input matInput formControlName="type">
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Porte</mat-label>
+      <input matInput formControlName="size">
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Sexo</mat-label>
+      <input matInput formControlName="sex">
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Castrado?</mat-label>
+      <mat-select formControlName="neutered">
+        <mat-option [value]="true">Sim</mat-option>
+        <mat-option [value]="false">Não</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()">Cancelar</button>
+  <button mat-button color="primary" [disabled]="editForm.invalid" (click)="onSave()">Salvar</button>
+</mat-dialog-actions>

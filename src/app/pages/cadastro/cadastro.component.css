@@ -81,18 +81,29 @@
 
 .info-box {
   background: #ad96f7;
-  padding: 20px;
   border-radius: 15px;
   margin-bottom: 15px;
 }
 
 .info-box h3 {
-  font-size: 20px;
+  font-size: 40px;
+  text-align: center;  
+  margin:50px 50px;
+  padding: 20px;
+  gap:10px;
+}
+
+.info-box p {
+  font-size: 25px;
+  color: #ffffff;
+  padding: 10px;
 }
 
 .info-box span {
   font-weight: bold;
   color: #2d1066;
+  font-size: 30px;
+  padding: 10px;
 }
 
 .info-box img {
@@ -102,14 +113,18 @@
   height: auto;
 }
 
-.cadastro-info p {
-  font-size: 14px;
-}
+
 
 .cadastro-info a {
-  color: #ffd700;
-  font-weight: bold;
+  color: #ffae00;
+  font-weight: medium;
   text-decoration: none;
+}
+
+.img-cad{
+  width: 100%;
+  height: auto;
+  margin-bottom: -5px;
 }
 
 @media (max-width: 768px) {
