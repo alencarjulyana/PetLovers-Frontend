@@ -41,9 +41,9 @@ export class LoginComponent implements OnInit {
       password: this.loginForm.get('password')?.value
     }).subscribe(response => {
       if (response && response.id) {
-        console.log("✅ Login bem-sucedido! Salvando usuário e redirecionando...");
-        this.authService.saveUserData(response); // 🔹 Salva os dados do usuário no sessionStorage
-        this.router.navigate(['/dashboard']); // Redireciona após login
+        console.log("✅ Login bem-sucedido! Salvando usuário e redirecionando..."  , response.id);
+        this.authService.saveUserData(response); 
+        this.router.navigate(['/dashboard']);
       } else {
         this.erroMensagem = "❌ Credenciais inválidas!";
       }

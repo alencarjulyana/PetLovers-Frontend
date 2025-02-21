@@ -6,8 +6,6 @@
       <li><a routerLink="/favoritos">Meus favoritos</a></li>
       <li class="active"><a routerLink="/perfil">Meu Perfil</a></li>
     </ul>
-    <button class="logout">
-      <a routerLink="/cadastro" style="color: #ffffff; text-decoration: none; border-radius: 20px">Logout</a>
-    </button>
+    <button *ngIf="authService.isLoggedIn()" class="logout" (click)="onLogout()">Logout</button>
   </nav>
   

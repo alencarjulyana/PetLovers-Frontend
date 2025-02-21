@@ -4,7 +4,7 @@ import { AuthService } from '../../services/auth.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink, RouterModule } from '@angular/router';
-import { HeaderComponent } from "../../header/header.component";
+import { HeaderComponent } from '../../header/header.component';
 
 @Component({
   selector: 'app-cadastropets',

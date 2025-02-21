@@ -7,6 +7,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '../../confirm-dialog/confirm-dialog.component';
 import { EditPetDialogComponent } from '../../edit-pet-dialog/edit-pet-dialog.component';
 import { HeaderComponent } from '../../header/header.component';
+
 @Component({
   selector: 'app-dashboard',
   standalone: true,
@@ -21,37 +22,30 @@ export class DashboardComponent implements OnInit {
   constructor(private petService: PetService, private authService: AuthService, private dialog: MatDialog) {}
 
   ngOnInit(): void {
-    this.userId = this.authService.getUserId(); // Obtém o ID do usuário logado
+    this.userId = this.authService.getUserId();
+    console.log("➡️ userId (dashboard):", this.userId);
   
-    // 1) Carrega todos os pets
     this.petService.getAllPets().subscribe({
       next: (pets) => {
         this.pets = pets;
-  
-        // 2) Se o usuário estiver logado, carrega a lista de favoritos
+
         if (this.userId) {
           this.petService.getFavoritePetsDetails(this.userId).subscribe({
             next: (favorites) => {
-              // favorites é um array com os detalhes dos pets favoritados
               const favoriteIds = favorites.map((petFav: any) => petFav.id);
-  
-              // Marca isFavorited = true se o pet estiver na lista de favoritos
+
               this.pets.forEach((pet: any) => {
                 pet.isFavorited = favoriteIds.includes(pet.id);
               });
   
-              // Filtra etc, se necessário
               this.filteredPets = this.pets;
             },
             error: (err) => {
               console.error("Erro ao carregar favoritos:", err);
-              // Mesmo que dê erro ao carregar favoritos,
-              // vamos exibir os pets
               this.filteredPets = this.pets;
             }
           });
         } else {
-          // Se não estiver logado, apenas exibe todos os pets
           this.filteredPets = this.pets;
         }
       },
@@ -62,7 +56,7 @@ export class DashboardComponent implements OnInit {
   }
 
   filterPets(filter: string): void {
-    const lowerFilter = filter.toLowerCase(); // 🔹 Garante case-insensitive
+    const lowerFilter = filter.toLowerCase();
     this.filteredPets = this.pets.filter(pet => {
       const matchesType = pet.type?.toLowerCase() === lowerFilter;
       const matchesSex = (lowerFilter === 'male' && pet.sex?.toLowerCase() === 'male') ||
@@ -72,7 +66,6 @@ export class DashboardComponent implements OnInit {
       return matchesType || matchesSex || matchesSize;
     });
   }
-  
   
 
   resetFilters(): void {

@@ -32,7 +32,7 @@ export class CadastroComponent {
       this.usuarioService.cadastrarUsuario(this.cadastroForm.value).subscribe({
         next: (res: any) => {
           console.log(res.message || 'Usuário cadastrado com sucesso!');
-          this.router.navigate(['/dashboard']); 
+          this.router.navigate(['/login']); 
         },
         error: (err: any) => {
           console.error('Erro ao cadastrar usuário', err.message || err);

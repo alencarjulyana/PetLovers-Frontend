@@ -1,5 +1,5 @@
+<app-header></app-header>
 <div class="dashboard-container">
-  <app-header></app-header>
 
   <div class="banner">
     <img src="./assets/img/dog.png" alt="Cachorro" loading="eager" width="300" height="200"/>
@@ -34,6 +34,7 @@
     <p>Nenhum pet encontrado.</p>
   </div>
 
+  <div class="pets-grid">
   <div *ngFor="let pet of filteredPets" class="pet-card">
     <img [src]="pet.photo" alt="Foto do pet">
     <h3>{{ pet.name }}</h3>
@@ -46,7 +47,7 @@
       <i [class]="pet.isFavorited ? 'fa fa-heart heart-active' : 'fa fa-heart-o heart-inactive'"></i>
     </button>
   </div>
-
+</div>
   <footer>
     <p>© 2024 PetLovers. Todos os direitos reservados.</p>
   </footer>

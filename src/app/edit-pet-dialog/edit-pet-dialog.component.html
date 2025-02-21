@@ -1,4 +1,4 @@
-<h2 mat-dialog-title>Editar Pet</h2>
+<h2 mat-dialog-title>Edite seu Pet aqui!</h2>
 <mat-dialog-content>
     <div class="photo-container">
         <img [src]="editForm.get('photo')?.value" alt="Foto do Pet" class="pet-photo">
@@ -35,6 +35,6 @@
   </form>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-  <button mat-button (click)="onCancel()">Cancelar</button>
-  <button mat-button color="primary" [disabled]="editForm.invalid" (click)="onSave()">Salvar</button>
+  <button mat-button class="cancel-button"  (click)="onCancel()">Cancelar</button>
+  <button mat-button color="primary" class="confirm-button" [disabled]="editForm.invalid" (click)="onSave()">Salvar</button>
 </mat-dialog-actions>

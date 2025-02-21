@@ -36,10 +36,10 @@
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
   
-  .pet-card:hover {
+  /* .pet-card:hover {
     transform: translateY(-10px);
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
-  }
+  } */
   
   .pet-photo {
     width: 100%;
