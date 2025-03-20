@@ -1,8 +1,9 @@
 .container {
   font-family: Arial, sans-serif;
-  max-width: 1200px;
+  max-width: 800px;
   margin: 0 auto;
   padding: 10px;
+
 }
 
 /* Navbar Styles */
@@ -87,7 +88,7 @@
 }
 
 input, select, button {
-  width: 100%;
+  width: 90%;
   padding: 12px;
   margin-bottom: 15px;
   border: 1px solid #ccc;
@@ -97,11 +98,12 @@ input, select, button {
 
 button {
   background-color: #6142A8;
-  border: none;
+  border-radius: 8px;
+  color: white;
   cursor: pointer;
   font-weight: bold;
   font-size: 15px; /* Larger font for the button */
-  padding: 15px; /* Increased padding for a larger button */
+  padding: 10px; /* Increased padding for a larger button */
 
 }
 
@@ -110,23 +112,23 @@ button {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #6142A8;
+  background-color: #c797dc;
+  text-align: center;
+  padding: 10px;
+  flex-wrap: wrap;
   color: white;
-  margin-top: 30px;
-  border-radius: 8px;
 }
 
 .banner p {
-  font-size: 20px;
-  text-align: center;
-  padding: 20px;
-  margin-right: 80px;
+  max-width: 600px;
+  font-size: 1.2rem;
 }
 
 .banner img {
-  width: 200px; /* Slightly larger image */
-  height: auto;
+  max-width: 300px;
+  width: 100%;
 }
+
 
 /* Footer Styles */
 footer {

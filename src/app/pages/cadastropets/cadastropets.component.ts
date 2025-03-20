@@ -21,7 +21,7 @@ export class CadastroPetsComponent {
     breed: '',
     size: '',
     sex: '',
-    neutered: false
+    neutered: false,
   };
 
   previewUrl: string | ArrayBuffer | null = null; // Para pré-visualizar a imagem

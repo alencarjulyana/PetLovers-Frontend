@@ -4,8 +4,9 @@
       <li><a routerLink="/dashboard">Home</a></li>
       <li><a routerLink="/sobre">Sobre</a></li>
       <li><a routerLink="/favoritos">Meus favoritos</a></li>
-      <li class="active"><a routerLink="/perfil">Meu Perfil</a></li>
+      <li class="active"><a routerLink="/perfil">Cadastrar Pet</a></li>
+      <li><a routerLink="/adotar">Adotar Pet</a></li>
+      <li><a routerLink="/meuperfil">Meu Perfil</a></li>
     </ul>
     <button *ngIf="authService.isLoggedIn()" class="logout" (click)="onLogout()">Logout</button>
   </nav>
-  

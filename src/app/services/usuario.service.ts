@@ -7,10 +7,10 @@ import { Observable } from 'rxjs';
 })
 export class UsuarioService {
   private apiUrl = 'http://localhost:8080/users';
-  private storageKey = 'userData'; 
+  private storageKey = 'userData';
 
   constructor(private http: HttpClient) {}
-  
+
   cadastrarUsuario(usuario: any): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/register`, usuario);
   }
@@ -38,5 +38,9 @@ export class UsuarioService {
 
   removerUsuarioDoSessionStorage(): void {
     sessionStorage.removeItem(this.storageKey);
+  }
+
+  updateUser(petId: string, userData: any): Observable<any> {
+    return this.http.put(`http://localhost:8080/user/`, userData);
   }
 }

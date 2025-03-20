@@ -11,43 +11,51 @@
       </label>
       <input id="file-input" type="file" accept="image/*" (change)="onFileChange($event)">
     </div>
+    <div class="form">
+      <input type="text" placeholder="Nome do seu Pet" [(ngModel)]="petData.name">
 
-    <input type="text" placeholder="Nome" [(ngModel)]="petData.name">
+      <select [(ngModel)]="petData.type">
+        <option value="">Selecione o Tipo</option>
+        <option value="Dog">Cachorro</option>
+        <option value="Cat">Gato</option>
+        <option value="Other">Outro</option>
+      </select>
 
-    <select [(ngModel)]="petData.type">
-      <option value="">Selecione o Tipo</option>
-      <option value="Dog">Cachorro</option>
-      <option value="Cat">Gato</option>
-      <option value="Other">Outro</option>
-    </select>
+      <input type="text" placeholder="Raça" [(ngModel)]="petData.breed">
+      <select [(ngModel)]="petData.size">
+        <option value="">Selecione o Porte</option>
+        <option value="small">Pequeno</option>
+        <option value="medium">Médio</option>
+        <option value="big">Grande</option>
+      </select>
 
-    <input type="text" placeholder="Raça" [(ngModel)]="petData.breed">
-    <input type="text" placeholder="Porte" [(ngModel)]="petData.size">
+      <select [(ngModel)]="petData.sex">
+        <option value="">Selecione o Sexo</option>
+        <option value="Male">Macho</option>
+        <option value="Female">Fêmea</option>
+      </select>
 
-    <select [(ngModel)]="petData.sex">
-      <option value="">Selecione o Sexo</option>
-      <option value="Male">Macho</option>
-      <option value="Female">Fêmea</option>
-    </select>
+      <select [(ngModel)]="petData.neutered">
+        <option [ngValue]="true">Castrado</option>
+        <option [ngValue]="false">Não Castrado</option>
+      </select>
 
-    <select [(ngModel)]="petData.neutered">
-      <option [ngValue]="true">Castrado</option>
-      <option [ngValue]="false">Não Castrado</option>
-    </select>
-
-    <button (click)="cadastrarPet()">Cadastrar Pet</button>
+      <button (click)="cadastrarPet()">Cadastrar Pet</button>
+    </div>
   </div>
 
-  <div class="banner">
-    <img src="./assets/img/happydog.png" alt="Cachorro feliz">
-    <p>
-      <strong>Encontre o seu melhor amigo!</strong><br>
-      Adoção responsável, amor incondicional.<br>
-      Encontre o pet ideal para você.
-    </p>
-  </div>
 
-  <footer>
-    <p>© 2024 PetLovers. Todos os direitos reservados.</p>
-  </footer>
 </div>
+
+<div class="banner">
+  <img src="./assets/img/happydog.png" alt="Cachorro feliz">
+  <p>
+    <strong>Encontre o seu melhor amigo!</strong><br>
+    Adoção responsável, amor incondicional.<br>
+    Encontre o pet ideal para você.
+  </p>
+</div>
+
+<footer>
+  <p>© 2024 PetLovers. Todos os direitos reservados.</p>
+</footer>

@@ -1,68 +1,83 @@
+/* dashboard.component.css */
 .dashboard-container {
-  font-family: Arial, sans-serif;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: 'Poppins', sans-serif;
 }
 
 .banner {
-  display: flex;               
-  align-items: center;         
+  display: flex;
   justify-content: space-between;
-  background-color: #5C2D91;  
-  padding: 2rem;
-  color: #fff;
-  border-radius: 10px;
-  padding-left: 0%;
-  padding-bottom: 0%;
-  margin-top: 5px;
-}
-
-.banner-content {
-  max-width: 50%;
-}
-
-.banner-content h1 {
-  font-size: 2.4rem;
-  margin-bottom: 0.5rem;
-}
-
-.banner-content p {
-  font-size: 1.2rem;
-  line-height: 1.5;
-}
-
-.banner img {
-  max-width: 100%;
-  margin-left: 2rem;
-  margin-left: -2px;
-  width: 300px;
-  height: 200px;
-}
-
-.filters {
-  margin-top: 30px;
-}
-
-.filters h3 {
-  margin-bottom: 10px;
-}
-
-.filters button {
-  margin-right: 10px;
-  padding: 10px 15px;
-  background-color: #6142A8;
-  border: none;
-  cursor: pointer;
-  border-radius: 4px;
+  align-items: center;
+  background-color: #c797dc;
+  text-align: center;
+  padding: 10px;
+  flex-wrap: wrap;
   color: white;
 }
 
-.pet-list {
+.banner p {
+  max-width: 600px;
+  font-size: 1.2rem;
+}
+
+.banner img {
+  max-width: 300px;
+  width: 100%;
+}
+
+/* Layout principal */
+.filters-and-pets {
   display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  margin-top: 30px;
+  flex: 1;
+  padding: 2rem;
+  gap: 2rem;
+}
+
+/* Sidebar de filtros */
+.filters {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-width: 300px;
+}
+
+.filters h2 {
+  margin-bottom: 20px;
+  font-size: 1.5em;
+}
+
+.clear-filters {
+  background-color: #6142A8;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.filter-group {
+  margin-bottom: 20px;
+}
+
+.filter-group h3 {
+  margin-bottom: 10px;
+  font-size: 1.2em;
+}
+
+.filter-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 1em;
+}
+
+.filter-group input[type="checkbox"] {
+  margin-right: 10px;
 }
 
 .pets-grid {
@@ -91,7 +106,7 @@
 
 footer {
   text-align: center;
-  margin-top: 30px; 
+  margin-top: 30px;
   padding: 20px;
   background-color: #f9f9f9;
   color: black;
@@ -128,5 +143,69 @@ footer {
   padding: 5px 10px;
   border-radius: 4px;
   cursor: pointer;
+}
+
+/* Rodapé */
+footer {
+  background: #c797dc;
+  color: #fff;
+  text-align: center;
+  padding: 1rem;
+  margin-top: auto;
+}
+
+/* Responsivo Tablet */
+@media (max-width: 1024px) {
+  .filters-and-pets {
+    flex-direction: column;
+    padding: 1rem;
+  }
+
+  .filters {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .filters h3 {
+    flex-basis: 100%;
+  }
+
+  .filters button {
+    flex: 1 1 calc(33% - 0.5rem);
+  }
+
+  .pet-list {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    padding: 0;
+  }
+}
+
+/* Responsivo Mobile */
+@media (max-width: 600px) {
+  .banner {
+    flex-direction: column;
+    text-align: center;
+    padding: 1rem;
+  }
+
+  .banner p {
+    font-size: 1rem;
+  }
+
+  .filters {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filters button {
+    width: 100%;
+  }
+
+  .pet-list {
+    grid-template-columns: 1fr;
+  }
+
 
 }

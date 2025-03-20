@@ -6,7 +6,7 @@
     margin: 0;
     padding: 0;
   }
-  
+
   /* Navbar */
   .navbar {
     display: flex;
@@ -16,12 +16,12 @@
     padding: 1rem 2rem;
     color: #652681;
   }
-  
+
   .navbar .logo {
     font-size: 1.8rem;
     font-weight: bold;
   }
-  
+
   .navbar ul {
     list-style: none;
     display: flex;
@@ -29,18 +29,18 @@
     margin: 0;
     padding: 0;
   }
-  
+
   .navbar ul li a {
     color: #652681;
     text-decoration: none;
     transition: color 0.3s;
   }
-  
+
   .navbar ul li a:hover,
   .navbar ul li a.active {
     color: #f0a500;
   }
-  
+
   .logout {
     background-color: #652681;
     border: none;
@@ -48,7 +48,7 @@
     cursor: pointer;
     border-radius: 4px;
   }
-  
+
   /* Conteúdo da página Sobre */
   .sobre-content {
     max-width: 800px;
@@ -56,17 +56,26 @@
     padding: 1rem;
     text-align: center;
   }
-  
+
   .sobre-content h2 {
     font-size: 2rem;
     margin-bottom: 1.5rem;
     color: #333;
   }
-  
+
   .sobre-content p {
     font-size: 1.1rem;
     line-height: 1.6;
     margin-bottom: 1rem;
     color: #555;
   }
-  
+
+  footer {
+    text-align: center;
+    margin-top: 30px; /* Increased margin for better separation */
+    padding: 20px;
+    background-color: #f9f9f9;
+    color: black;
+    border-radius: 8px;
+    font-size: 16px; /* Larger font for better readability */
+  }

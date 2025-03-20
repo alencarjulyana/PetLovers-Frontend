@@ -1,0 +1,32 @@
+<h2 mat-dialog-title>Edite seu Perfil!</h2>
+<mat-dialog-content>
+
+  <form [formGroup]="editForm">
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Nome</mat-label>
+      <input matInput formControlName="name">
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email">
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Telefone</mat-label>
+      <input matInput formControlName="phone">
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Endereço</mat-label>
+      <input matInput formControlName="address">
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Nome de Usuário</mat-label>
+      <input matInput formControlName="username">
+    </mat-form-field>
+
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button class="cancel-button"  (click)="onCancel()">Cancelar</button>
+  <button mat-button color="primary" class="confirm-button" [disabled]="editForm.invalid" (click)="onSave()">Salvar</button>
+</mat-dialog-actions>
+

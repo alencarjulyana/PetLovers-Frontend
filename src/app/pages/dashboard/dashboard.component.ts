@@ -1,3 +1,4 @@
+import { AdoptionComponent } from './../adoption/adoption.component';
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
@@ -16,15 +17,22 @@ import { HeaderComponent } from '../../header/header.component';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+  
+//apenas para não dar erro
+  adoptPet(_t42: any) {
+throw new Error('Method not implemented.');
+}
+
   pets: any[] = [];
   filteredPets: any[] = [];
   userId: string | null = null;
+search: any;
   constructor(private petService: PetService, private authService: AuthService, private dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.userId = this.authService.getUserId();
     console.log("➡️ userId (dashboard):", this.userId);
-  
+
     this.petService.getAllPets().subscribe({
       next: (pets) => {
         this.pets = pets;
@@ -37,7 +45,7 @@ export class DashboardComponent implements OnInit {
               this.pets.forEach((pet: any) => {
                 pet.isFavorited = favoriteIds.includes(pet.id);
               });
-  
+
               this.filteredPets = this.pets;
             },
             error: (err) => {
@@ -62,22 +70,22 @@ export class DashboardComponent implements OnInit {
       const matchesSex = (lowerFilter === 'male' && pet.sex?.toLowerCase() === 'male') ||
                          (lowerFilter === 'female' && pet.sex?.toLowerCase() === 'female');
       const matchesSize = pet.size?.toLowerCase() === lowerFilter;
-  
+
       return matchesType || matchesSex || matchesSize;
     });
   }
-  
+
 
   resetFilters(): void {
     this.filteredPets = this.pets;
   }
-  
+
   deletePet(petId: string): void {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       width: '300px',
       data: { message: 'Tem certeza que deseja excluir este pet?' }
     });
-  
+
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.petService.deletePet(petId).subscribe({
@@ -92,7 +100,7 @@ export class DashboardComponent implements OnInit {
       }
     });
   }
-  
+
 
   loadPets(): void {
     this.petService.getAllPets().subscribe({
@@ -105,7 +113,7 @@ export class DashboardComponent implements OnInit {
       }
     });
   }
-  
+
   editPet(pet: any): void {
     const dialogRef = this.dialog.open(EditPetDialogComponent, {
       width: '400px',
@@ -127,6 +135,8 @@ export class DashboardComponent implements OnInit {
       }
     });
   }
+
+
 
   toggleFavorite(pet: any): void {
   const userId = this.authService.getUserId();
