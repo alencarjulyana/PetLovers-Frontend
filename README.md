@@ -69,6 +69,12 @@
 
 ## 🧱 Repositórios
 
+### UserService
+https://github.com/oliviaoliva/PetLovers-UserService
+
+### PetService
+https://github.com/oliviaoliva/PetLovers
+
 ## 🚧 Desafios e Dificuldades
 
 Durante o desenvolvimento deste projeto, alguns desafios surgiram:
