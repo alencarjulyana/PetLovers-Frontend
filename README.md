@@ -1,4 +1,4 @@
-<h1 align="center" style="font-weight: bold;">PetLovers 🐕❤️</h1>
+<h1 align="center" style="font-weight: bold;">PetLovers ❤️🐕❤️</h1>
 
 <p align="center"><i>Projeto Final das disciplinas de Programação Distribuída e Desenvolvimento e Execução de Projetos de Software que visa promover a adoção responsável onde tutores e inr=teressados conseguem interagir e adicionar pets para adoção..</i></p>
 
