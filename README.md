@@ -4,16 +4,18 @@
 
 ## 📖 Índice
 
-1. [🏛️ Arquitetura](#-arquitetura)
+1. [🏛️ Arquitetura](#-arquitetura-e-preview)
 2. [🛠️ Tecnologias Utilizadas](#-tecnologias-utilizadas)
 3. [🚀 Execução e Utilização](#-execução-e-utilização)
 4. [🧱 Repositórios](#-repositórios)
 5. [🚧 Desafios e Dificuldades](#-desafios-e-dificuldades)
 6. [👥 Contribuidores](#-contribuidores)
 
-## 🏛️ Arquitetura
+## 🏛️ Arquitetura e Preview
 
 <p align="center">Este projeto utiliza FrontEnd em Angular, Backend em Spring e um microsserviço em Python. Utiliza gRPC para comunicação entre serviços, RabbitMQ para mensageria e Redis para cache.</p>
+
+![image](https://github.com/user-attachments/assets/1fa071d2-2eed-41f4-9ff0-0bccfe9febc8)
 
 
 ---
@@ -30,6 +32,9 @@
 ![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
 ![OpenProject](https://img.shields.io/badge/OpenProject-0770B7?style=for-the-badge&logo=openproject&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)
+![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white)
+
 
 
 ### Linguagens de Programação
@@ -55,16 +60,21 @@
 
 8. **[GitHub](https://github.com/) (2024):** Plataforma de hospedagem e versionamento de código, facilitando a colaboração, gerenciamento de versões e integração contínua.
 9. **[Docker](https://www.docker.com/) (2024):** Plataforma usada para criar, distribuir e executar aplicações em containers, proporcionando maior consistência e facilidade no deploy das aplicações
-
+### Bancos de Dados
+11. **[PostgreSQL](https://www.postgresql.org/) (2024):** Banco de dados relacional robusto e eficiente, usado para armazenamento estruturado e consistente dos dados.
+12. **[MongoDB](https://www.mongodb.com/) (2024):** Banco de dados NoSQL orientado a documentos, utilizado para armazenamento flexível e escalável de dados não estruturados.
+ 
 ### Ferramentas de Gestão de Projetos
 
-10. **[OpenProject](https://www.openproject.org/):** Ferramenta open source para gestão de projetos ágil e colaborativa, auxiliando na organização de tarefas, planejamento e acompanhamento do desenvolvimento.
+12. **[OpenProject](https://www.openproject.org/):** Ferramenta open source para gestão de projetos ágil e colaborativa, auxiliando na organização de tarefas, planejamento e acompanhamento do desenvolvimento.
 
 
 
 ## 🚀 Execução e Utilização
 
 ### Passo a Passo para Iniciar o Projeto
+
+Executar cada repositório e iniciar serviços e bancos no Docker.
 
 
 ## 🧱 Repositórios
